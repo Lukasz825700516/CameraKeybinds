@@ -1,0 +1,9 @@
+{
+  "category.camera_keybinds.camera_keybinds": "Camera keybinds",
+  "key.camera_keybinds.first_person_camera": "First person camera",
+  "key.camera_keybinds.third_person_camera": "Third person camera",
+  "key.camera_keybinds.third_person_reverse_camera": "Third person reverse camera",
+  "key.camera_keybinds.switch_first_person_camera": "Switch first person camera",
+  "key.camera_keybinds.switch_third_person_camera": "Switch third person camera",
+  "key.camera_keybinds.switch_third_person_reverse_camera": "Switch third person reverse camera"
+}
