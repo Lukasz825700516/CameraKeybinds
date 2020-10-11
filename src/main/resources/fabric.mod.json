@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.camera_keybinds.CameraKeybinds"
+      "net.nubbu2.camera_keybinds.CameraKeybinds"
     ]
   },
   "mixins": [ ],
