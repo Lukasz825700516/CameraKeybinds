@@ -70,40 +70,40 @@ public class CameraKeybinds implements ModInitializer {
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			if(setPerspectiveFirstPerson.wasPressed()) {
-				client.options.method_31043(Perspective.FIRST_PERSON);
+				client.options.setPerspective(Perspective.FIRST_PERSON);
 			}
 			if(setPerspectiveThirdPerson.wasPressed()) {
-				client.options.method_31043(Perspective.THIRD_PERSON_BACK);
+				client.options.setPerspective(Perspective.THIRD_PERSON_BACK);
 			}
 			if(setPerspectiveThirdPersonReverse.wasPressed()) {
-				client.options.method_31043(Perspective.THIRD_PERSON_FRONT);
+				client.options.setPerspective(Perspective.THIRD_PERSON_FRONT);
 			}
 
 			if(switchPerspectiveFirstPersonAndLast.wasPressed()) {
 			    Perspective perspective = client.options.getPerspective();
 			    if (perspective != Perspective.FIRST_PERSON) {
 					lastPerspective = perspective;
-					client.options.method_31043(Perspective.FIRST_PERSON);
+					client.options.setPerspective(Perspective.FIRST_PERSON);
 				} else {
-					client.options.method_31043(lastPerspective);
+					client.options.setPerspective(lastPerspective);
 				}
 			}
 			if(switchPerspectiveThirdPersonAndLast.wasPressed()) {
 				Perspective perspective = client.options.getPerspective();
 				if (perspective != Perspective.THIRD_PERSON_BACK) {
 					lastPerspective = perspective;
-					client.options.method_31043(Perspective.THIRD_PERSON_BACK);
+					client.options.setPerspective(Perspective.THIRD_PERSON_BACK);
 				} else {
-					client.options.method_31043(lastPerspective);
+					client.options.setPerspective(lastPerspective);
 				}
 			}
 			if(switchPerspectiveThirdPersonReverseAndLast.wasPressed()) {
 				Perspective perspective = client.options.getPerspective();
 				if (perspective != Perspective.THIRD_PERSON_FRONT) {
 					lastPerspective = perspective;
-					client.options.method_31043(Perspective.THIRD_PERSON_FRONT);
+					client.options.setPerspective(Perspective.THIRD_PERSON_FRONT);
 				} else {
-					client.options.method_31043(lastPerspective);
+					client.options.setPerspective(lastPerspective);
 				}
 			}
 		});
