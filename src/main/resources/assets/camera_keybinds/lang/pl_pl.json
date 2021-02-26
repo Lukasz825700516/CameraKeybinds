@@ -5,5 +5,8 @@
   "key.camera_keybinds.third_person_reverse_camera": "Widok trzecioosbowy odwrócony",
   "key.camera_keybinds.switch_first_person_camera": "Przełącz widok pierwszoosobowy",
   "key.camera_keybinds.switch_third_person_camera": "Przełącz widok trzeciosobowy",
-  "key.camera_keybinds.switch_third_person_reverse_camera": "Przełącz widok trzecioosobowy odrwócony"
+  "key.camera_keybinds.switch_third_person_reverse_camera": "Przełącz widok trzecioosobowy odrwócony",
+  "key.camera_keybinds.hold_first_person_camera": "Przytrzymaj widok pierwszoosobowy",
+  "key.camera_keybinds.hold_third_person_camera": "Przytrzymaj widok trzecioosobowy",
+  "key.camera_keybinds.hold_third_person_reverse_camera": "Przytrzymaj widok trzecioosobowy odwrócony"
 }

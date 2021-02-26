@@ -7,6 +7,11 @@ Change your perspective to:
 -  third person, with "o"
 -  reverse third person, with "p"
 
+Hold key to temporary change perspective:
+-  first person, with "j"
+-  third person, with "k"
+-  reverse third person, with "l"
+
 Or toggle between last and:
 -  first person, with "b"
 -  third person, with "n"
