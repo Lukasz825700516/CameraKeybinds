@@ -1,18 +1,14 @@
 package net.nubbu2.camera_keybinds;
 
-import net.fabricmc.api.Environment;
-import net.fabricmc.api.EnvironmentInterface;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.mixin.resource.loader.MixinKeyedResourceReloadListener;
-import net.fabricmc.loader.transformer.EnvironmentStrippingData;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.options.Perspective;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
-import javax.swing.text.JTextComponent;
 
 public class CameraKeybinds implements ModInitializer {
 
@@ -25,6 +21,30 @@ public class CameraKeybinds implements ModInitializer {
 	private static KeyBinding switchPerspectiveFirstPersonAndLast;
 	private static KeyBinding switchPerspectiveThirdPersonAndLast;
 	private static KeyBinding switchPerspectiveThirdPersonReverseAndLast;
+
+	private static KeyBinding holdPerspectiveFirstPerson;
+	private static KeyBinding holdPerspectiveThirdPerson;
+	private static KeyBinding holdPerspectiveThirdPersonReverse;
+
+	private static boolean heldPerspectiveFirstPersion = false;
+	private static boolean heldPerspectiveThirdPersion = false;
+	private static boolean heldPerspectiveThirdPersionReverse = false;
+
+	private boolean holdPerspective(MinecraftClient client, KeyBinding key, Perspective perspective, boolean keyHeld) {
+		if(key.wasPressed()) {
+			Perspective currentPerspective = client.options.getPerspective();
+			lastPerspective = currentPerspective;
+			client.options.setPerspective(perspective);
+			keyHeld = true;
+		}
+		if(keyHeld && !key.isPressed()) {
+			Perspective currentPerspective = client.options.getPerspective();
+			client.options.setPerspective(lastPerspective);
+			lastPerspective = currentPerspective;
+			keyHeld = false;
+		}
+		return keyHeld;
+	}
 
 	@Override
 	public void onInitialize() {
@@ -67,6 +87,24 @@ public class CameraKeybinds implements ModInitializer {
 				GLFW.GLFW_KEY_M,
 				"category.camera_keybinds.camera_keybinds"
 		));
+		holdPerspectiveFirstPerson = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+				"key.camera_keybinds.hold_first_person_camera",
+				InputUtil.Type.KEYSYM,
+				GLFW.GLFW_KEY_J,
+				"category.camera_keybinds.camera_keybinds"
+		));
+		holdPerspectiveThirdPerson = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+				"key.camera_keybinds.hold_third_person_camera",
+				InputUtil.Type.KEYSYM,
+				GLFW.GLFW_KEY_K,
+				"category.camera_keybinds.camera_keybinds"
+		));
+		holdPerspectiveThirdPersonReverse = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+				"key.camera_keybinds.hold_third_person_reverse_camera",
+				InputUtil.Type.KEYSYM,
+				GLFW.GLFW_KEY_L,
+				"category.camera_keybinds.camera_keybinds"
+		));
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			if(setPerspectiveFirstPerson.wasPressed()) {
@@ -106,6 +144,10 @@ public class CameraKeybinds implements ModInitializer {
 					client.options.setPerspective(lastPerspective);
 				}
 			}
+
+			heldPerspectiveFirstPersion = holdPerspective(client, holdPerspectiveFirstPerson, Perspective.FIRST_PERSON, heldPerspectiveFirstPersion);
+			heldPerspectiveThirdPersion = holdPerspective(client, holdPerspectiveThirdPerson, Perspective.THIRD_PERSON_BACK, heldPerspectiveThirdPersion);
+			heldPerspectiveThirdPersionReverse = holdPerspective(client, holdPerspectiveThirdPersonReverse, Perspective.THIRD_PERSON_FRONT, heldPerspectiveThirdPersionReverse);
 		});
 	}
 }
