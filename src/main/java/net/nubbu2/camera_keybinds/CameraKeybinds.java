@@ -31,7 +31,7 @@ public class CameraKeybinds implements ModInitializer {
 	private static boolean heldPerspectiveThirdPersionReverse = false;
 
 	private boolean holdPerspective(MinecraftClient client, KeyBinding key, Perspective perspective, boolean keyHeld) {
-		if(key.wasPressed()) {
+		if(!keyHeld && key.isPressed()) {
 			Perspective currentPerspective = client.options.getPerspective();
 			lastPerspective = currentPerspective;
 			client.options.setPerspective(perspective);
